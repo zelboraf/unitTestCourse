@@ -27,14 +27,14 @@ class StringCalculatorTest {
     }
 
     @Test
-    void shouldSumOfTwoNumbersWhenTwoNumbersGiven() {
+    void shouldReturnSumOfTwoNumbersWhenTwoNumbersGiven() {
         assertEquals(5, calculator.add("2,3"));
         assertEquals(0, calculator.add("1,-1"));
         assertEquals(0, calculator.add("0,0"));
     }
 
     @Test
-    void shouldSumOfThreeNumbersWhenThreeNumbersGiven() {
+    void shouldReturnSumOfThreeNumbersWhenThreeNumbersGiven() {
         assertEquals(9, calculator.add("6,2,1"));
         assertEquals(0, calculator.add("6,-5,-1"));
     }
