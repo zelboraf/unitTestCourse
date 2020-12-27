@@ -1,4 +1,4 @@
-package module1;
+package module1_calculator;
 
 public class StringCalculator {
 
