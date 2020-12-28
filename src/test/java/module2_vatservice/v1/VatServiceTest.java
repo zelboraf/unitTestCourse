@@ -1,4 +1,4 @@
-package module2_vatservice;
+package module2_vatservice.v1;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,17 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class VatServiceTest {
     VatService vatService;
 
-    @BeforeEach
-    void setUpVatService() {
-        vatService = new VatService();
-    }
-
     @Test
     @DisplayName("Should calculate gross price for default VAT")
     void shouldCalculateGrossPriceForDefaultVat() throws IncorrectVatException {
         // GIVEN
-        double netPrice = 100.0;
-        Product product = new Product(UUID.randomUUID().toString(), netPrice);
+        Product product = generateProduct();
 
         // WHEN
         double result = vatService.getGrossPriceForDefaultVat(product);
@@ -39,9 +33,8 @@ class VatServiceTest {
     @DisplayName("Should calculate gross price for custom VAT")
     void shouldCalculateGrossPriceForCustomVat() throws IncorrectVatException {
         // GIVEN
-        double netPrice = 100.0;
+        Product product = generateProduct();
         double vatValue = 0.08;
-        Product product = new Product(UUID.randomUUID().toString(), netPrice);
 
         // WHEN
         double result = vatService.getGrossPriceForCustomVat(product.getNetPrice(), vatValue);
@@ -57,10 +50,9 @@ class VatServiceTest {
     @DisplayName("Should throw exception when VAT is too high")
     void shouldThrowExceptionWhenVatIsTooHigh() {
         // GIVEN
-        double netPrice = 100.0;
+        Product product = generateProduct();
         double vatValue = 1.01;
         String expectedMessage = "VAT can't be higher than 100%";
-        Product product = new Product(UUID.randomUUID().toString(), netPrice);
 
         //// JUnit5
         // WHEN
@@ -81,5 +73,16 @@ class VatServiceTest {
         assertThat(throwable)
                 .isInstanceOf(IncorrectVatException.class)
                 .hasMessage(expectedMessage);
+    }
+
+    @BeforeEach
+    void setUpVatService() {
+        vatService = new VatService();
+    }
+
+    private Product generateProduct() {
+        double netPrice = 100.0;
+        String id = UUID.randomUUID().toString();
+        return new Product(id, netPrice);
     }
 }

@@ -1,4 +1,4 @@
-package module2_vatservice;
+package module2_vatservice.v2;
 
 public class IncorrectVatException extends Throwable {
     private final String message;

@@ -1,4 +1,4 @@
-package module2_vatservice;
+package module2_vatservice.v1;
 
 class Product {
     String id;
