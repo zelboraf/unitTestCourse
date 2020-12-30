@@ -1,15 +1,23 @@
 package module2_vatservice.v2;
 
-class Product {
-    String id;
-    double netPrice;
+import java.util.UUID;
 
-    public Product(String id, double netPrice) {
+class Product {
+    UUID id;
+    double netPrice;
+    String type;
+
+    public Product(UUID id, double netPrice, String type) {
         this.id = id;
         this.netPrice = netPrice;
+        this.type = type;
     }
 
     public double getNetPrice() {
         return netPrice;
+    }
+
+    public String getType() {
+        return type;
     }
 }
